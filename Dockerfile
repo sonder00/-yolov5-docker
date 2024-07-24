@@ -1,7 +1,7 @@
 FROM ccr.ccs.tencentyun.com/cube-studio/ubuntu-gpu:cuda11.8.0-cudnn8-python3.9
 COPY sources.list /etc/apt/sources.list
 RUN apt update -y
-COPY yolov5 /yolov5
+RUN git clone -b v7.0 --single-branch https://github.com/ultralytics/yolov5.git
 WORKDIR /yolov5
 RUN pip config set global.index-url https://mirrors.aliyun.com/pypi/simple
 RUN pip cache purge && apt-get install -y python3-opencv && pip install -r requirements.txt
